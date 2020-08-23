@@ -4,7 +4,9 @@ class Work extends Component {
     constructor(props){
         super(props);
         this.state = {
-          name: null
+          //name: null
+			username:"",
+			password:""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -58,7 +60,7 @@ class Work extends Component {
         const name = this.state.name;
         return (
             <div className="App">
-                <header className="App-header">
+                <header className="App-header"> 
             		<strong>Work</strong>
                     <p>Hello user! Enter your name below: </p>
             
@@ -68,8 +70,25 @@ class Work extends Component {
                     </form>
             
                     <p>Server replies: Hi {name}</p>
-            
                 </header>
+
+
+				<h1>Login</h1>
+				   <form name='f' action="login" method='POST'>
+				      <table>
+				         <tr>
+				            <td>User:</td>
+				            <td><input type='text' name='username' value=''></input></td>
+				         </tr>
+				         <tr>
+				            <td>Password:</td>
+				            <td><input type='password' name='password' /></td>
+				         </tr>
+				         <tr>
+				            <td><input name="submit" type="submit" value="submit"></input></td>
+				         </tr>
+				      </table>
+				  </form>
             </div>
         );
     }
