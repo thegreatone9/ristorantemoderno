@@ -20,7 +20,7 @@ class Work2 extends Component {
 		console.log(event.target[1].value);
 		
 		const data = { "username": ""+event.target[0].value, "password":""+event.target[1].value };
-		
+		//becareful of putting fetch api call inside another function...it disables the state interaction somehow. :/
 		
 		fetch('/authenticate', {
       		method: 'POST',
@@ -52,20 +52,17 @@ class Work2 extends Component {
 			this.setState({
       			jwt: response.jwt
     		});
+			console.log("First fetch done, now second: ");
+			console.log(this.state.jwt);
 		})
 		.catch((error) => {
             console.log(error);
-        });
-		
-		console.log("First fetch done, now second: ");
-		console.log(this.state.jwt);
-		
-		
-
-		setTimeout(fetch('/rest_data', {
+        })
+		//jwt is obtained, so now to fetch data from api with it
+		.then(fetch('/rest_data', {
       		method: 'GET',
  			headers: new Headers({
-      			'Authorization': 'Bearer ' + this.state.jwt,
+      			'Authorization': 'Bearer ' + this.state.jwt,       
  				'Content-Type': 'application/json',
         		'Accept': 'application/json'
     		})
@@ -104,7 +101,7 @@ class Work2 extends Component {
 		})
 		.catch((error) => {
             console.log(error);
-        }), 3000);
+        }));
 		
 	
 		
