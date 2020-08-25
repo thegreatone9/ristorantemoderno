@@ -38,3 +38,6 @@ node_modules
 
 ### maven repo ###
 .mvn
+
+### .env file heroku ###
+.env
