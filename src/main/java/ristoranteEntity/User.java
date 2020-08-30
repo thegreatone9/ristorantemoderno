@@ -1,14 +1,23 @@
 package ristoranteEntity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
 	
 	//define fields
@@ -29,6 +38,16 @@ public class User {
 	
 	@Column(name="password")
 	private String password;
+	
+	@OneToMany(mappedBy="userId", cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //refers to the userId property in the comments table, (i.e. the table which contains the foreign key)
+	private List<Comment> comments; //mapped by=userId refers to the userId field in Comment class. Note that comments is not a column, but refers to the fact that a list of comments of this user is tracked by the userId column in the comments table.
+	
+	
+	@ManyToMany(fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE,
+			   CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinTable(name="dish_user", joinColumns=@JoinColumn(name="userId"), inverseJoinColumns=@JoinColumn(name="dishId"))
+	private List<Dish> dishes;
+	
 	
 	//define constructors
 	

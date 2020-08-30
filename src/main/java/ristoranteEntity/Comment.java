@@ -1,10 +1,12 @@
 package ristoranteEntity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,9 +19,14 @@ public class Comment {
 	@Column(name="id")
 	private int id;
 	
+	//many comments can have one User
 	@Column(name="userId")
-	private int userId;
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //these are the cascade effects required	
+	private User userId;
 	
+	
+	//many comments can point to one dish
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //these are the cascade effects required		
 	@Column(name="dishId")
 	private int dishId;
 	
@@ -39,7 +46,7 @@ public class Comment {
 	}
 
 
-	public Comment(int userId, int dishId, int rating, String comment, String date) {
+	public Comment(User userId, int dishId, int rating, String comment, String date) {
 		this.userId = userId;
 		this.dishId = dishId;
 		this.rating = rating;
@@ -58,11 +65,11 @@ public class Comment {
 		this.id = id;
 	}
 
-	public int getUserId() {
+	public User getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 

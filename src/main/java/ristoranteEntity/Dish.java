@@ -1,10 +1,18 @@
 package ristoranteEntity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -37,10 +45,19 @@ public class Dish {
 	private double feature;
 	
 	@Column(name="description")
-	private double description;
+	private String description;
 	
 	@Column(name="servetime")
 	private String serveTime;
+	
+	@OneToMany(mappedBy="userId", cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //refers to the dishId property in the comments table, (i.e. the table which contains the foreign key)
+	private List<Comment> comments; //mapped by=userId refers to the dishId field in Comment class. Note that comments is not a column, but refers to the fact that a list of comments of this dish is tracked by the dishId column in the comments table.
+	
+	
+	@ManyToMany(fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE,
+			   CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinTable(name="dish_user", joinColumns=@JoinColumn(name="dishId"), inverseJoinColumns=@JoinColumn(name="userId"))
+	private List<User> users;
 	
 	//constructor
 	public Dish() {
@@ -49,7 +66,7 @@ public class Dish {
 
 
 	public Dish(String name, String image, String category, String label, double price, double feature,
-			double description, String serveTime) {
+			String description, String serveTime) {
 		this.name = name;
 		this.image = image;
 		this.category = category;
@@ -125,12 +142,12 @@ public class Dish {
 	}
 
 
-	public double getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
 
-	public void setDescription(double description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 

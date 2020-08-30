@@ -1,0 +1,125 @@
+database creation:
+
+CREATE DATABASE ristorante;
+
+database switching:
+\c ristorante;
+
+schema creation:
+
+CREATE TABLE users (
+id SERIAL NOT NULL PRIMARY KEY,
+email VARCHAR(100) NOT NULL,
+password VARCHAR(100) NOT NULL
+);
+
+
+CREATE TABLE dish(
+id SERIAL NOT NULL PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+image VARCHAR(300) NOT NULL,
+category VARCHAR(100) NOT NULL,
+label VARCHAR(100) NOT NULL,
+price DECIMAL NOT NULL,
+featured boolean DEFAULT FALSE,
+description VARCHAR(300) NOT NULL
+);
+
+
+CREATE TABLE feedback(
+id SERIAL NOT NULL PRIMARY KEY,
+firstname VARCHAR(100) NOT NULL,
+lastname VARCHAR(100) NOT NULL,
+category VARCHAR(100) NOT NULL,
+telnum INTEGER NOT NULL,
+email VARCHAR(100) NOT NULL,
+contactType VARCHAR(20) NOT NULL,
+message VARCHAR(300) NOT NULL,
+date timestamp NOT NULL
+);
+
+
+CREATE TABLE leader(
+id SERIAL NOT NULL PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+image VARCHAR(100) NOT NULL,
+designation VARCHAR(100) NOT NULL,
+abbr VARCHAR(20) NOT NULL,
+featured boolean DEFAULT FALSE,
+description VARCHAR(300) NOT NULL
+);
+
+
+CREATE TABLE promotion(
+id SERIAL NOT NULL PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+image VARCHAR(100) NOT NULL,
+label VARCHAR(20) NOT NULL,
+price DECIMAL NOT NULL,
+featured boolean DEFAULT FALSE,
+description VARCHAR(300) NOT NULL
+);
+
+
+CREATE TABLE comment(
+id SERIAL NOT NULL PRIMARY KEY,
+userId INTEGER NOT NULL,
+dishId INTEGER NOT NULL,
+rating INTEGER NOT NULL,
+comment VARCHAR(300) NOT NULL,
+date timestamp NOT NULL,
+FOREIGN KEY (userId) REFERENCES users (id),
+FOREIGN KEY (dishId) REFERENCES dish (id)
+);
+
+CREATE TABLE dish_user (
+dishId INTEGER NOT NULL,
+userId INTEGER NOT NULL,
+PRIMARY KEY (dishId, userId),
+FOREIGN KEY (dishId) REFERENCES dish(id),
+FOREIGN KEY (userId) REFERENCES users(id)
+);
+
+
+Alterations:
+
+ALTER TABLE dish
+ADD COLUMN description VARCHAR(500) NOT NULL;
+
+ALTER TABLE dish
+ALTER COLUMN price TYPE DECIMAL;
+
+
+Insertions:
+
+Table dish:
+INSERT INTO dish (name, image, category, label, price, featured, description) VALUES ('Uthappizza','images/uthappizza.png', 'mains', 'Hot', 4.99, true, 'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.');
+INSERT INTO dish (name, image, category, label, price, featured, description) VALUES ('Zucchipakoda','images/zucchipakoda.png', 'appetizer', 'Classic', 1.99, false, 'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce.');
+INSERT INTO dish (name, image, category, label, price, featured, description) VALUES ('Vadonut','images/vadonut.png', 'appetizer', 'New', 1.99, false, 'A quintessential ConFusion experience, is it a vada or is it a donut?');
+INSERT INTO dish (name, image, category, label, price, featured, description) VALUES ('ElaiCheese Cake','images/elaicheesecake.png', 'dessert', 'Delight', 2.99, false, 'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms.');
+
+Table promotion:
+INSERT INTO promotion (name, image, label, price, featured, description) VALUES ('Weekend Grand Buffet', 'images/buffet.png', 'New', 19.99 , true, 'Featuring mouthwatering combinations with a choice of five different salads, six enticing appetizers, six main entrees and five choicest desserts. Free flowing bubbly and soft drinks. All for just $19.99 per person.');
+
+Table leader:
+INSERT INTO leader(name, image, designation, abbr, featured, description) VALUES ('Peter Pan', 'images/geralt.png', 'Chief Epicurious Officer', 'CEO', false, 'Our CEO, Peter, credits his hardworking East Asian immigrant parents who undertook the arduous journey to the shores of America with the intention of giving their children the best future. His mothers wizardy in the kitchen whipping up the tastiest dishes with whatever is available inexpensively at the supermarket, was his first inspiration to create the fusion cuisines.');
+INSERT INTO leader(name, image, designation, abbr, featured, description) VALUES ('Dhanasekaran Witherspoon', 'images/gary.png', 'Chief Food Officer', 'CFO', false, 'Our CFO, Danny, as he is affectionately referred to by his colleagues, comes from a long established family tradition in farming and produce. His experiences growing up on a farm in the Australian outback gave him great appreciation for varieties of food sources. As he puts it in his own words, Everything that runs, wins, and everything that stays, pays!');
+INSERT INTO leader(name, image, designation, abbr, featured, description) VALUES ('Agumbe Tang', 'images/linda.png', 'Chief Taste Officer', 'CTO', false, 'Blessed with the most discerning gustatory sense, Agumbe, our CFO, personally ensures that every dish that we serve meets his exacting tastes. Our chefs dread the tongue lashing that ensues if their dish does not meet his exacting standards. He lives by his motto, You click only if you survive my lick.');
+INSERT INTO leader(name, image, designation, abbr, featured, description) VALUES ('Alberto Somayya', 'images/alberto.png', 'Executive Chef', 'EC', true, 'Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!');
+
+Table user:
+INSERT INTO users(email, password) VALUES ('musa', 'shakib');
+INSERT INTO users(email, password) VALUES ('admin', 'thegreatone9');
+
+Reading:
+SELECT * from dish;
+
+Deletion:
+
+DELETE FROM dish WHERE id = 2;
+
+
+
+
+
+
