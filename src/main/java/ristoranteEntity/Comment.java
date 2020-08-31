@@ -19,10 +19,10 @@ public class Comment {
 	@Column(name="id")
 	private int id;
 	
-	//many comments can have one User
-	@Column(name="userId")
+	//many comments can have one String
+	@Column(name="author")
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //these are the cascade effects required	
-	private User userId;
+	private String author;
 	
 	
 	//many comments can point to one dish
@@ -46,8 +46,8 @@ public class Comment {
 	}
 
 
-	public Comment(User userId, int dishId, int rating, String comment, String date) {
-		this.userId = userId;
+	public Comment(String author, int dishId, int rating, String comment, String date) {
+		this.author = author;
 		this.dishId = dishId;
 		this.rating = rating;
 		this.comment = comment;
@@ -65,12 +65,12 @@ public class Comment {
 		this.id = id;
 	}
 
-	public User getUserId() {
-		return userId;
+	public String getauthor() {
+		return author;
 	}
 
-	public void setUserId(User userId) {
-		this.userId = userId;
+	public void setauthor(String author) {
+		this.author = author;
 	}
 
 	public int getDishId() {
@@ -116,7 +116,7 @@ public class Comment {
 	
 	@Override
 	public String toString() {
-		return "Comments [id=" + id + ", userId=" + userId + ", dishId=" + dishId + ", rating=" + rating + ", comment="
+		return "Comments [id=" + id + ", author=" + author + ", dishId=" + dishId + ", rating=" + rating + ", comment="
 				+ comment + ", date=" + date + "]";
 	}
 

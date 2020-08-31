@@ -5,6 +5,9 @@ CREATE DATABASE ristorante;
 database switching:
 \c ristorante;
 
+see schema:
+\dt
+
 schema creation:
 
 CREATE TABLE users (

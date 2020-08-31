@@ -28,6 +28,9 @@ public class Feedback {
 	@Column(name="email")
 	private String email;
 	
+	@Column(name="agree")
+	private boolean agree;
+	
 	@Column(name="contactType")
 	private String contactType;
 	
@@ -45,7 +48,7 @@ public class Feedback {
 
 
 	public Feedback(String firstname, String lastname, int telnum, String email, String contactType, String message,
-			String date) {
+			String date, boolean agree) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.telnum = telnum;
@@ -53,6 +56,7 @@ public class Feedback {
 		this.contactType = contactType;
 		this.message = message;
 		this.date = date;
+		this.agree = agree;
 	}
 
 	
@@ -135,6 +139,15 @@ public class Feedback {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	
+	public boolean getAgree() {
+		return agree;
+	}
+	
+	public void setAgree(boolean agree) {
+		this.agree = agree;
 	}
 
 

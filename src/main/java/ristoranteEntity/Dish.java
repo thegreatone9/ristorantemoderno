@@ -41,8 +41,8 @@ public class Dish {
 	@Column(name="price")
 	private double price;
 	
-	@Column(name="feature")
-	private double feature;
+	@Column(name="featured")
+	private boolean featured;
 	
 	@Column(name="description")
 	private String description;
@@ -65,14 +65,14 @@ public class Dish {
 	}
 
 
-	public Dish(String name, String image, String category, String label, double price, double feature,
+	public Dish(String name, String image, String category, String label, double price, boolean featured,
 			String description, String serveTime) {
 		this.name = name;
 		this.image = image;
 		this.category = category;
 		this.label = label;
 		this.price = price;
-		this.feature = feature;
+		this.featured = featured;
 		this.description = description;
 		this.serveTime = serveTime;
 	}
@@ -132,13 +132,13 @@ public class Dish {
 	
 	
 
-	public double getFeature() {
-		return feature;
+	public boolean getfeatured() {
+		return featured;
 	}
 
 
-	public void setFeature(double feature) {
-		this.feature = feature;
+	public void setfeatured(boolean featured) {
+		this.featured = featured;
 	}
 
 
@@ -166,7 +166,7 @@ public class Dish {
 	@Override
 	public String toString() {
 		return "Dishes [id=" + id + ", name=" + name + ", image=" + image + ", category=" + category + ", label="
-				+ label + ", price=" + price + ", feature=" + feature + ", description=" + description + ", serveTime="
+				+ label + ", price=" + price + ", featured=" + featured + ", description=" + description + ", serveTime="
 				+ serveTime + "]";
 	}
 	
