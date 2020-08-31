@@ -11,15 +11,23 @@ import java.util.List;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ristoranteEntity.Comment;
 import ristoranteEntity.Dish;
+import ristoranteEntity.Feedback;
+import ristoranteEntity.Leader;
+import ristoranteEntity.Promotion;
 import ristoranteEntity.Ristorante;
 
 public class DatabaseFiller {
 	
 	public DatabaseFiller() {
 		Connection conn = this.dataBaseFiller();
-		List<Dish> dishes = jacksonReader();
-		this.insertDishes(conn, dishes);
+		Ristorante ristoranteModerno = jacksonReader();
+		this.insertDishes(conn, ristoranteModerno.getDishes());
+		this.insertComments(conn, ristoranteModerno.getComments());
+		//this.insertLeaders(conn, ristoranteModerno.getLeaders());
+		//this.insertFeedbacks(conn, ristoranteModerno.getFeedback());
+		//this.insertPromotions(conn, ristoranteModerno.getPromotions());
 		
 	}
 	
@@ -40,15 +48,15 @@ public class DatabaseFiller {
 	}
 	
 	
-	public static List<Dish> jacksonReader() {
+	public static Ristorante jacksonReader() {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); //to ignore unknown fields in json file
-		List<Dish> dishes = null;
+		Ristorante ristoranteModerno = null;
 		try {
 			// JSON file to Java object
-	         Ristorante ristoranteModerno = mapper.readValue(new File("src/main/resources/db - Copy.json"), Ristorante.class);
+	         ristoranteModerno = mapper.readValue(new File("src/main/resources/db - Copy.json"), Ristorante.class);
 	         System.out.println("ristorantedb file found!");
-	        dishes = ristoranteModerno.getDishes();
+	         List<Dish>dishes = ristoranteModerno.getDishes();
 	         System.out.println("The name of the second dish is: " + dishes.get(2).getName());
 		}
 		
@@ -56,17 +64,17 @@ public class DatabaseFiller {
 			e.printStackTrace();
 		}
 		
-		return dishes;
+		return ristoranteModerno;
 		
 	}
 	
 	
 	/**
-     * insert multiple actors
+     * insert multiple dishes
      */
     public void insertDishes(Connection conn, List<Dish> list) {
-        String SQL = "INSERT INTO dish (name, image, category, label, price, featured, description) "
-                + "VALUES(?,?,?,?,?,?,?)";
+        String SQL = "INSERT INTO dish (name, image, category, label, price, featured, description, servetime) "
+                + "VALUES(?,?,?,?,?,?,?,?)";
         try (
             PreparedStatement statement = conn.prepareStatement(SQL);) {
             int count = 0;
@@ -79,6 +87,137 @@ public class DatabaseFiller {
                 statement.setDouble(5, dish.getPrice());
                 statement.setBoolean(6, dish.getfeatured());
                 statement.setString(7, dish.getDescription());
+                statement.setString(8, dish.getServeTime());
+
+                statement.addBatch();
+                count++;
+                // execute every 100 rows or less
+                if (count % 100 == 0 || count == list.size()) {
+                    statement.executeBatch();
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    /**
+     * insert multiple dishes
+     */
+    public void insertComments(Connection conn, List<Comment> list) {
+        String SQL = "INSERT INTO comment (dishid, rating, comment, author, date) "
+                + "VALUES(?,?,?,?,?)";
+        try (
+            PreparedStatement statement = conn.prepareStatement(SQL);) {
+            int count = 0;
+
+            for (Comment comment : list) {
+                statement.setInt(1, comment.getDishId()+1);
+                statement.setDouble(2, comment.getRating());
+                statement.setString(3, comment.getComment());
+                statement.setString(4, comment.getauthor());
+                statement.setString(5, comment.getDate());
+
+                statement.addBatch();
+                count++;
+                // execute every 100 rows or less
+                if (count % 100 == 0 || count == list.size()) {
+                    statement.executeBatch();
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    /**
+     * insert multiple dishes
+     */
+    public void insertLeaders(Connection conn, List<Leader> list) {
+        String SQL = "INSERT INTO leader (name, image, designation, abbr, featured, description) "
+                + "VALUES(?,?,?,?,?,?)";
+        try (
+            PreparedStatement statement = conn.prepareStatement(SQL);) {
+            int count = 0;
+
+            for (Leader leader : list) {
+                statement.setString(1, leader.getName());
+                statement.setString(2, leader.getImage());
+                statement.setString(3, leader.getDesignation());
+                statement.setString(4, leader.getAbbr());
+                statement.setBoolean(5, leader.isFeatured());
+                statement.setString(6, leader.getDescription());
+
+                statement.addBatch();
+                count++;
+                // execute every 100 rows or less
+                if (count % 100 == 0 || count == list.size()) {
+                    statement.executeBatch();
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    
+    
+    /**
+     * insert multiple dishes
+     */
+    public void insertPromotions(Connection conn, List<Promotion> list) {
+        String SQL = "INSERT INTO promotion (name, image, label, price, featured, description) "
+                + "VALUES(?,?,?,?,?,?)";
+        try (
+            PreparedStatement statement = conn.prepareStatement(SQL);) {
+            int count = 0;
+
+            for (Promotion promotion : list) {
+                statement.setString(1, promotion.getName());
+                statement.setString(2, promotion.getImage());
+                statement.setString(3, promotion.getLabel());
+                statement.setDouble(4, promotion.getPrice());
+                statement.setBoolean(5, promotion.isFeatured());
+                statement.setString(6, promotion.getDescription());
+
+                statement.addBatch();
+                count++;
+                // execute every 100 rows or less
+                if (count % 100 == 0 || count == list.size()) {
+                    statement.executeBatch();
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    
+    
+    /**
+     * insert multiple dishes
+     */
+    public void insertFeedbacks(Connection conn, List<Feedback> list) {
+    	
+    	System.out.println("Feedback size is: " + list.size());
+    	System.out.println("First feedback message is: " + list.get(0).getMessage());
+    	
+        String SQL = "INSERT INTO feedback (firstname, lastname, telnum, email, agree, contactType, message, date) "
+                + "VALUES(?,?,?,?,?,?,?,?)";
+        try (
+            PreparedStatement statement = conn.prepareStatement(SQL);) {
+            int count = 0;
+
+            for (Feedback feedback : list) {
+            	statement.setString(1, feedback.getFirstname());
+            	statement.setString(2, feedback.getLastname());
+                statement.setInt(3, feedback.getTelnum());
+                statement.setString(4, feedback.getEmail());
+                statement.setBoolean(5, feedback.getAgree());
+                statement.setString(6, feedback.getContactType());
+                statement.setString(7, feedback.getMessage());
+                statement.setString(8, feedback.getDate());
+                
 
                 statement.addBatch();
                 count++;

@@ -27,7 +27,7 @@ public class Comment {
 	
 	//many comments can point to one dish
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //these are the cascade effects required		
-	@Column(name="dishId")
+	@Column(name="dishid")
 	private int dishId;
 	
 	@Column(name="rating")

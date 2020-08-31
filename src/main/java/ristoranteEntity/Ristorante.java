@@ -2,6 +2,9 @@ package ristoranteEntity;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Ristorante {
 	
 	//fields
@@ -10,7 +13,7 @@ public class Ristorante {
 	private List<Comment> comments;
 	private List<Promotion> promotions;
 	private List<Leader> leaders;
-	private List<Feedback> feedbacks;
+	private List<Feedback> feedback;
 	
 	
 	//constructors
@@ -20,13 +23,13 @@ public class Ristorante {
 	}
 	
 	public Ristorante(List<Subscription> subscriptions, List<Dish> dishes, List<Comment> comments,
-			List<Promotion> promotions, List<Leader> leaders, List<Feedback> feedbacks) {
+			List<Promotion> promotions, List<Leader> leaders, List<Feedback> feedback) {
 		this.subscriptions = subscriptions;
 		this.dishes = dishes;
 		this.comments = comments;
 		this.promotions = promotions;
 		this.leaders = leaders;
-		this.feedbacks = feedbacks;
+		this.feedback = feedback;
 	}
 
 	
@@ -72,12 +75,12 @@ public class Ristorante {
 		this.leaders = leaders;
 	}
 
-	public List<Feedback> getFeedbacks() {
-		return feedbacks;
+	public List<Feedback> getFeedback() {
+		return feedback;
 	}
 
-	public void setFeedbacks(List<Feedback> feedbacks) {
-		this.feedbacks = feedbacks;
+	public void setFeedback(List<Feedback> feedback) {
+		this.feedback = feedback;
 	}
 
 	
@@ -86,7 +89,7 @@ public class Ristorante {
 	@Override
 	public String toString() {
 		return "ristorante [subscriptions=" + subscriptions + ", dishes=" + dishes + ", comments=" + comments
-				+ ", promotions=" + promotions + ", leaders=" + leaders + ", feedbacks=" + feedbacks + "]";
+				+ ", promotions=" + promotions + ", leaders=" + leaders + ", feedback=" + feedback + "]";
 	}
 	
 	

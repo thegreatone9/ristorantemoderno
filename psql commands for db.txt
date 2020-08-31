@@ -25,7 +25,8 @@ category VARCHAR(100) NOT NULL,
 label VARCHAR(100) NOT NULL,
 price DECIMAL NOT NULL,
 featured boolean DEFAULT FALSE,
-description VARCHAR(300) NOT NULL
+description VARCHAR(300) NOT NULL,
+servetime VARCHAR(100) NOT NULL
 );
 
 
@@ -33,12 +34,12 @@ CREATE TABLE feedback(
 id SERIAL NOT NULL PRIMARY KEY,
 firstname VARCHAR(100) NOT NULL,
 lastname VARCHAR(100) NOT NULL,
-category VARCHAR(100) NOT NULL,
 telnum INTEGER NOT NULL,
 email VARCHAR(100) NOT NULL,
+agree boolean DEFAULT TRUE,
 contactType VARCHAR(20) NOT NULL,
 message VARCHAR(300) NOT NULL,
-date timestamp NOT NULL
+date VARCHAR(100) NOT NULL
 );
 
 
@@ -49,7 +50,7 @@ image VARCHAR(100) NOT NULL,
 designation VARCHAR(100) NOT NULL,
 abbr VARCHAR(20) NOT NULL,
 featured boolean DEFAULT FALSE,
-description VARCHAR(300) NOT NULL
+description VARCHAR(700) NOT NULL
 );
 
 
@@ -66,13 +67,12 @@ description VARCHAR(300) NOT NULL
 
 CREATE TABLE comment(
 id SERIAL NOT NULL PRIMARY KEY,
-userId INTEGER NOT NULL,
-dishId INTEGER NOT NULL,
+author VARCHAR(100) NOT NULL,
+dishid INTEGER NOT NULL,
 rating INTEGER NOT NULL,
 comment VARCHAR(300) NOT NULL,
-date timestamp NOT NULL,
-FOREIGN KEY (userId) REFERENCES users (id),
-FOREIGN KEY (dishId) REFERENCES dish (id)
+date VARCHAR(100) NOT NULL,
+FOREIGN KEY (dishid) REFERENCES dish (id)
 );
 
 CREATE TABLE dish_user (
