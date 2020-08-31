@@ -6,13 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.tryout.backend.databaseFiller.DatabaseFiller;
 
-import databaseFiller.DatabaseFiller;
-
-
-
-@JsonIgnoreProperties(ignoreUnknown = true) //to ignore unknown fields during json parsing
 @SpringBootApplication
 public class BackendApplication {
 
