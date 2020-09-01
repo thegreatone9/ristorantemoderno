@@ -50,10 +50,6 @@ public class Dish {
 	@Column(name="servetime")
 	private String serveTime;
 	
-	@OneToMany(mappedBy="dish", cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //refers to the dish property in the comments class, (i.e. the table which contains the foreign key)
-	private List<Comment> comments; //mapped by=dish refers to the dish property in Comment class. Note that comments is not a column, but refers to the fact that a list of comments of this dish is tracked by the dishid column in the comments table.
-	
-	
 	@ManyToMany(fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE,
 			   CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(name="dish_customer", joinColumns=@JoinColumn(name="dishid"), inverseJoinColumns=@JoinColumn(name="customerid"))

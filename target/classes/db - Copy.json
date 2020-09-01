@@ -1,6 +1,6 @@
 {
 
-  "users" : [
+  "customers" : [
         {
           "id":1,
           "email":"admin",
@@ -31,9 +31,9 @@
             ],
             "comments" : [
               {
-                "dishid": 1,
-                "rating": "3",
-                "userid": 1,
+                "dishid": 2,
+                "rating": 3,
+                "customerid": 1,
                 "comment": "Hello!",
                 "date": "2020-06-30T15:55:46.231Z",
                 "id": 20
@@ -43,7 +43,7 @@
                 "dishid": 1,
                 "rating": 4,
                 "comment": "Ultimate, Reaching for the stars!",
-                "userid": 1,
+                "customerid": 1,
                 "date": "2013-12-02T17:57:28.556094Z"
               },
               {
@@ -51,7 +51,7 @@
                 "dishid": 2,
                 "rating": 2,
                 "comment": "It's your birthday, we're gonna party!",
-                "userid": 1,
+                "customerid": 1,
                 "date": "2011-12-02T17:57:28.556094Z"
               },
               {
@@ -59,7 +59,7 @@
                 "dishid": 2,
                 "rating": 4,
                 "comment": "Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
-                "userid": 1,
+                "customerid": 1,
                 "date": "2014-09-05T17:57:28.556094Z"
               }
             ]
@@ -97,7 +97,7 @@
               {
                 "dishid": 1,
                 "rating": "3",
-                "userid": 2,
+                "customerid": 2,
                 "comment": "Hello!",
                 "date": "2020-06-30T15:55:46.231Z",
                 "id": 20
@@ -107,7 +107,7 @@
                 "dishid": 1,
                 "rating": 4,
                 "comment": "Ultimate, Reaching for the stars!",
-                "userid": 2,
+                "customerid": 2,
                 "date": "2013-12-02T17:57:28.556094Z"
               },
               {
@@ -115,7 +115,7 @@
                 "dishid": 2,
                 "rating": 2,
                 "comment": "It's your birthday, we're gonna party!",
-                "userid": 2,
+                "customerid": 2,
                 "date": "2011-12-02T17:57:28.556094Z"
               },
               {
@@ -123,7 +123,7 @@
                 "dishid": 2,
                 "rating": 4,
                 "comment": "Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
-                "userid": 2,
+                "customerid": 2,
                 "date": "2014-09-05T17:57:28.556094Z"
               }
             ]
@@ -161,7 +161,7 @@
               {
                 "dishid": 1,
                 "rating": "3",
-                "userid": 3,
+                "customerid": 3,
                 "comment": "Hello!",
                 "date": "2020-06-30T15:55:46.231Z",
                 "id": 20
@@ -171,7 +171,7 @@
                 "dishid": 1,
                 "rating": 4,
                 "comment": "Ultimate, Reaching for the stars!",
-                "userid": 3,
+                "customerid": 3,
                 "date": "2013-12-02T17:57:28.556094Z"
               },
               {
@@ -179,7 +179,7 @@
                 "dishid": 2,
                 "rating": 2,
                 "comment": "It's your birthday, we're gonna party!",
-                "userid": 3,
+                "customerid": 3,
                 "date": "2011-12-02T17:57:28.556094Z"
               },
               {
@@ -187,7 +187,7 @@
                 "dishid": 2,
                 "rating": 4,
                 "comment": "Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
-                "userid": 3,
+                "customerid": 3,
                 "date": "2014-09-05T17:57:28.556094Z"
               }
             ]
@@ -246,7 +246,7 @@
       "dishid": 4,
       "rating": 5,
       "comment": "Imagine all the eatables, living in conFusion!",
-      "userid": 2,
+      "customerid": 2,
       "date": "2012-10-16T17:57:28.556094Z"
     },
     {
@@ -254,7 +254,7 @@
       "dishid": 4,
       "rating": 4,
       "comment": "Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
-      "userid": 3,
+      "customerid": 3,
       "date": "2014-09-05T17:57:28.556094Z"
     },
     {
@@ -262,7 +262,7 @@
       "dishid": 4,
       "rating": 3,
       "comment": "Eat it, just eat it!",
-      "userid":2,
+      "customerid":2,
       "date": "2015-02-13T17:57:28.556094Z"
     },
     {
@@ -270,7 +270,7 @@
       "dishid": 4,
       "rating": 4,
       "comment": "Ultimate, Reaching for the stars!",
-      "userid": 1,
+      "customerid": 1,
       "date": "2013-12-02T17:57:28.556094Z"
     },
     {
@@ -278,7 +278,7 @@
       "dishid": 4,
       "rating": 2,
       "comment": "It's your birthday, we're gonna party!",
-      "userid": 2,
+      "customerid": 2,
       "date": "2011-12-02T17:57:28.556094Z"
     },
     {
@@ -286,7 +286,7 @@
       "dishid": 1,
       "rating": 5,
       "comment": "Imagine all the eatables, living in conFusion!",
-      "userid": 3,
+      "customerid": 3,
       "date": "2012-10-16T17:57:28.556094Z"
     },
     {
@@ -294,7 +294,7 @@
       "dishid": 1,
       "rating": 4,
       "comment": "Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
-      "userid": 3,
+      "customerid": 3,
       "date": "2014-09-05T17:57:28.556094Z"
     },
     {
@@ -302,7 +302,7 @@
       "dishid": 1,
       "rating": 3,
       "comment": "Eat it, just eat it!",
-      "userid": 2,
+      "customerid": 2,
       "date": "2015-02-13T17:57:28.556094Z"
     },
     {
@@ -310,7 +310,7 @@
       "dishid": 1,
       "rating": 4,
       "comment": "Ultimate, Reaching for the stars!",
-      "userid": 1,
+      "customerid": 1,
       "date": "2013-12-02T17:57:28.556094Z"
     },
     {
@@ -318,7 +318,7 @@
       "dishid": 1,
       "rating": 2,
       "comment": "It's your birthday, we're gonna party!",
-      "userid": 3,
+      "customerid": 3,
       "date": "2011-12-02T17:57:28.556094Z"
     },
     {
@@ -326,7 +326,7 @@
       "dishid": 2,
       "rating": 5,
       "comment": "Imagine all the eatables, living in conFusion!",
-      "userid": 2,
+      "customerid": 2,
       "date": "2012-10-16T17:57:28.556094Z"
     },
     {
@@ -334,7 +334,7 @@
       "dishid": 2,
       "rating": 4,
       "comment": "Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
-      "userid": 1,
+      "customerid": 1,
       "date": "2014-09-05T17:57:28.556094Z"
     },
     {
@@ -342,7 +342,7 @@
       "dishid": 2,
       "rating": 3,
       "comment": "Eat it, just eat it!",
-      "userid": 3,
+      "customerid": 3,
       "date": "2015-02-13T17:57:28.556094Z"
     },
     {
@@ -350,7 +350,7 @@
       "dishid": 2,
       "rating": 4,
       "comment": "Ultimate, Reaching for the stars!",
-      "userid": 2,
+      "customerid": 2,
       "date": "2013-12-02T17:57:28.556094Z"
     },
     {
@@ -358,7 +358,7 @@
       "dishid": 2,
       "rating": 2,
       "comment": "It's your birthday, we're gonna party!",
-      "userid": 1,
+      "customerid": 1,
       "date": "2011-12-02T17:57:28.556094Z"
     },
     {
@@ -366,7 +366,7 @@
       "dishid": 3,
       "rating": 5,
       "comment": "Imagine all the eatables, living in conFusion!",
-      "userid": 3,
+      "customerid": 3,
       "date": "2012-10-16T17:57:28.556094Z"
     },
     {
@@ -374,7 +374,7 @@
       "dishid": 3,
       "rating": 4,
       "comment": "Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
-      "userid": 2,
+      "customerid": 2,
       "date": "2014-09-05T17:57:28.556094Z"
     },
     {
@@ -382,7 +382,7 @@
       "dishid": 3,
       "rating": 3,
       "comment": "Eat it, just eat it!",
-      "userid": 1,
+      "customerid": 1,
       "date": "2015-02-13T17:57:28.556094Z"
     },
     {
@@ -390,7 +390,7 @@
       "dishid": 3,
       "rating": 4,
       "comment": "Ultimate, Reaching for the stars!",
-      "userid": 3,
+      "customerid": 3,
       "date": "2013-12-02T17:57:28.556094Z"
     },
     {
@@ -398,13 +398,13 @@
       "dishid": 3,
       "rating": 2,
       "comment": "It's your birthday, we're gonna party!",
-      "userid": 2,
+      "customerid": 2,
       "date": "2011-12-02T17:57:28.556094Z"
     },
     {
       "dishid": 1,
       "rating": "3",
-      "userid": 1,
+      "customerid": 1,
       "comment": "Hello!",
       "date": "2020-06-30T15:55:46.231Z",
       "id": 20
