@@ -4,8 +4,8 @@
         {
           "id":1,
           "email":"admin",
-          "first_name":"Musa",
-          "last_name":"Shakib",
+          "firstName":"Musa",
+          "lastName":"Shakib",
           "password":"thegreatone9",
           "subscriptions":[
                 {
@@ -67,8 +67,8 @@
         {
           "id":"2",
           "email":"helena@gmail.com",
-          "first_name":"Helena",
-          "last_name":"Brown",
+          "firstName":"Helena",
+          "lastName":"Brown",
           "password":"12345",
           "subscriptions":[
                 {
@@ -131,8 +131,8 @@
         {
           "id":"3",
           "email":"jamie@gmail.com",
-          "first_name":"Jamie",
-          "last_name":"Morgan",
+          "firstName":"Jamie",
+          "lastName":"Morgan",
           "password":"12345",
           "subscriptions":[
                 {

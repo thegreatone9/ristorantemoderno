@@ -26,8 +26,10 @@ public class Comment {
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //these are the cascade effects required		
 	private Customer customer;
 	
-	@Column(name="dishid")
-	private int dishid; 
+	//many comments can point to one dish, referenced by its corresponding column in this table "dishid"  ('dishid' is in this table!!!)
+	@JoinColumn(name="dishid")
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //these are the cascade effects required		
+	private Dish dish; // Comment (the owner entity) has a join column dishid that stores the id value and has a foreign key to the Dish entity
 	
 	@Column(name="rating")
 	private int rating;
@@ -83,36 +85,22 @@ public class Comment {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
-	
 
-	public Customer getCustomer() {
-		return customer;
+	public Dish getDish() {
+		return dish;
 	}
 
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-
-	public int getDishid() {
-		return dishid;
-	}
-
-
-	public void setDishid(int dishid) {
-		this.dishid = dishid;
+	public void setDish(Dish dish) {
+		this.dish = dish;
 	}
 
 	//toString
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", customer=" + customer + ", dishid=" + dishid + ", rating=" + rating
-				+ ", comment=" + comment + ", date=" + date + "]";
+		return "Comment [id=" + id + ", customer=" + customer + ", dish=" + dish + ", rating=" + rating + ", comment="
+				+ comment + ", date=" + date + "]";
 	}
 
-
-	
 }
