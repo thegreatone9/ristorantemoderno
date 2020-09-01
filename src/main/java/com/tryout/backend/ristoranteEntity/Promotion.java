@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="promotion")
+@Table(name="promotions")
 public class Promotion {
 
 	
@@ -42,16 +42,6 @@ public class Promotion {
 	
 	public Promotion() {
 		
-	}
-
-
-	public Promotion(String name, String image, String label, double price, boolean featured, String description) {
-		this.name = name;
-		this.image = image;
-		this.label = label;
-		this.price = price;
-		this.featured = featured;
-		this.description = description;
 	}
 	
 	

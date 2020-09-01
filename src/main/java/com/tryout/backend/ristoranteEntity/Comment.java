@@ -8,10 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="comment")
+@Table(name="comments")
 public class Comment {
 	
 	//field vars
@@ -20,11 +21,12 @@ public class Comment {
 	@Column(name="id")
 	private int id;
 	
+	//many comments can point to one customer, referenced by its corresponding representative's id in this table 'customer'. ('userid' is in this table!!!)
+	@JoinColumn(name="customerid")
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //these are the cascade effects required		
+	private Customer customer;
 	
-	@Column(name="author")
-	private String author;
-	
-	//many comments can point to one dish
+	//many comments can point to one dish, referenced by its corresponding column in this table "dishid"  ('dishid' is in this table!!!)
 	@JoinColumn(name="dishid")
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //these are the cascade effects required		
 	private Dish dish; // Comment (the owner entity) has a join column dishid that stores the id value and has a foreign key to the Dish entity
@@ -45,26 +47,7 @@ public class Comment {
 	}
 
 
-	public Comment(int dishid, String author, int rating, String comment, String date) {
-		this.author = author;
-		this.rating = rating;
-		this.comment = comment;
-		this.date = date;
-		this.setDishId(dishid);
-		
-	}
-
-
 	//getters and setters
-	
-
-	public int getDishId() {
-		return dish.getId();
-	}
-	
-	public void setDishId(int dishid) {
-		dish.setId(dishid);
-	}
 	
 	public int getId() {
 		return id;
@@ -72,14 +55,6 @@ public class Comment {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getauthor() {
-		return author;
-	}
-
-	public void setauthor(String author) {
-		this.author = author;
 	}
 
 	public int getRating() {
@@ -111,13 +86,13 @@ public class Comment {
 		this.date = date;
 	}
 	
-	public String getAuthor() {
-		return author;
+	public Customer getAuthor() {
+		return customer;
 	}
 
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setAuthor(Customer customer) {
+		this.customer = customer;
 	}
 
 
@@ -134,7 +109,7 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", author=" + author + ", dish=" + dish + ", rating=" + rating + ", comment="
+		return "Comment [id=" + id + ", customer=" + customer + ", dish=" + dish + ", rating=" + rating + ", comment="
 				+ comment + ", date=" + date + "]";
 	}
 

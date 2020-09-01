@@ -13,7 +13,9 @@ schema creation:
 CREATE TABLE users (
 id SERIAL NOT NULL PRIMARY KEY,
 email VARCHAR(100) NOT NULL,
-password VARCHAR(100) NOT NULL
+password VARCHAR(100) NOT NULL,
+firstName VARCHAR(100) NOT NULL,
+lastName VARCHAR(100) NOT NULL
 );
 
 
@@ -38,7 +40,7 @@ telnum INTEGER NOT NULL,
 email VARCHAR(100) NOT NULL,
 agree boolean DEFAULT TRUE,
 contactType VARCHAR(20) NOT NULL,
-message VARCHAR(300) NOT NULL,
+message VARCHAR(2000) NOT NULL,
 date VARCHAR(100) NOT NULL
 );
 
@@ -50,7 +52,7 @@ image VARCHAR(100) NOT NULL,
 designation VARCHAR(100) NOT NULL,
 abbr VARCHAR(20) NOT NULL,
 featured boolean DEFAULT FALSE,
-description VARCHAR(700) NOT NULL
+description VARCHAR(1000) NOT NULL
 );
 
 
@@ -61,18 +63,19 @@ image VARCHAR(100) NOT NULL,
 label VARCHAR(20) NOT NULL,
 price DECIMAL NOT NULL,
 featured boolean DEFAULT FALSE,
-description VARCHAR(300) NOT NULL
+description VARCHAR(1000) NOT NULL
 );
 
 
 CREATE TABLE comment(
 id SERIAL NOT NULL PRIMARY KEY,
-author VARCHAR(100) NOT NULL,
-dishid INTEGER NOT NULL,
+userId INTEGER NOT NULL,
+dishId INTEGER NOT NULL,
 rating INTEGER NOT NULL,
-comment VARCHAR(300) NOT NULL,
+comment VARCHAR(1000) NOT NULL,
 date VARCHAR(100) NOT NULL,
-FOREIGN KEY (dishid) REFERENCES dish (id)
+FOREIGN KEY (dishId) REFERENCES dish (id),
+FOREIGN KEY (userId) REFERENCES users (id)
 );
 
 CREATE TABLE dish_user (
@@ -91,6 +94,8 @@ ADD COLUMN description VARCHAR(500) NOT NULL;
 
 ALTER TABLE dish
 ALTER COLUMN price TYPE DECIMAL;
+
+ALTER SEQUENCE tablename_columnname_seq RESTART WITH anynumber;
 
 
 Insertions:

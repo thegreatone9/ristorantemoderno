@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="dish")
+@Table(name="dishes")
 public class Dish {
 	
 	//create field vars
@@ -51,30 +51,17 @@ public class Dish {
 	private String serveTime;
 	
 	@OneToMany(mappedBy="dish", cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //refers to the dish property in the comments class, (i.e. the table which contains the foreign key)
-	private List<Comment> comments; //mapped by=dishid refers to the dishId field in Comment class. Note that comments is not a column, but refers to the fact that a list of comments of this dish is tracked by the dishId column in the comments table.
+	private List<Comment> comments; //mapped by=dish refers to the dish property in Comment class. Note that comments is not a column, but refers to the fact that a list of comments of this dish is tracked by the dishid column in the comments table.
 	
 	
 	@ManyToMany(fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE,
 			   CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinTable(name="dish_user", joinColumns=@JoinColumn(name="dishId"), inverseJoinColumns=@JoinColumn(name="userId"))
-	private List<User> users;
+	@JoinTable(name="dish_customer", joinColumns=@JoinColumn(name="dishid"), inverseJoinColumns=@JoinColumn(name="customerid"))
+	private List<Customer> customers;
 	
 	//constructor
 	public Dish() {
 		
-	}
-
-
-	public Dish(String name, String image, String category, String label, double price, boolean featured,
-			String description, String serveTime) {
-		this.name = name;
-		this.image = image;
-		this.category = category;
-		this.label = label;
-		this.price = price;
-		this.featured = featured;
-		this.description = description;
-		this.serveTime = serveTime;
 	}
 
 	

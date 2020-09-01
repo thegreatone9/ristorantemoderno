@@ -46,19 +46,6 @@ public class Feedback {
 		
 	}
 
-
-	public Feedback(String firstname, String lastname, int telnum, String email, String contactType, String message,
-			String date, boolean agree) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.telnum = telnum;
-		this.email = email;
-		this.contactType = contactType;
-		this.message = message;
-		this.date = date;
-		this.agree = agree;
-	}
-
 	
 	//getters and setters
 

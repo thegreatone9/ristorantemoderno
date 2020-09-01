@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/", "/index.html", "/authenticate", "/rest_data", "/dishes", "/api/*", "/built/**").permitAll()
+				.antMatchers("/", "/index.html", "/authenticate", "/users/*", "/dishes/*", "/leaders/*", "/comments/*", "/feedbacks/*", "/promotions/*", "/api/**", "/built/**").permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()
@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.logout()
 				.permitAll();*/
 		
-		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+		//http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		http.csrf().disable();
 	}
 	

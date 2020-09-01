@@ -23,16 +23,6 @@ public class Ristorante {
 	public Ristorante() {
 		
 	}
-	
-	public Ristorante(List<Subscription> subscriptions, List<Dish> dishes, List<Comment> comments,
-			List<Promotion> promotions, List<Leader> leaders, List<Feedback> feedback) {
-		this.subscriptions = subscriptions;
-		this.dishes = dishes;
-		this.comments = comments;
-		this.promotions = promotions;
-		this.leaders = leaders;
-		this.feedback = feedback;
-	}
 
 	
 	//getters and setters

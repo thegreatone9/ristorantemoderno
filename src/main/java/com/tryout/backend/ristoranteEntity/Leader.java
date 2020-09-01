@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="leader")
+@Table(name="leaders")
 public class Leader {
 
 	//fields
