@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tryout.backend.ristoranteEntity.AuthenticationRequest;
 import com.tryout.backend.ristoranteEntity.AuthenticationResponse;
+import com.tryout.backend.ristoranteEntity.RistoranteUser;
 import com.tryout.backend.security.JwtUtil;
 
 @RestController
@@ -47,11 +48,14 @@ public class JwtController {
 		
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 		
+		final int customerid = ((RistoranteUser) userDetails).getCustomerId();
+		System.out.println("Customer id is: " + customerid);
+		
 		final String jwt = jwtTokenUtil.generateToken(userDetails);
 		
 		System.out.println("Jwt authentication passed. Jwt is: " + jwt);
 		
-		return ResponseEntity.ok(new AuthenticationResponse(jwt));
+		return ResponseEntity.ok(new AuthenticationResponse(jwt, customerid));
 	}
 	
 	@RequestMapping(value="/rest_data", method = RequestMethod.GET)
