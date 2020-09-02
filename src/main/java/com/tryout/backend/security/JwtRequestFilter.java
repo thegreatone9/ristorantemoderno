@@ -15,11 +15,13 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.tryout.backend.services.RistoranteUserServiceImpl;
+
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 	
 	@Autowired
-	private MyUserDetailsService userDetailsService;
+	private RistoranteUserServiceImpl userDetailsService;
 	
 	@Autowired
 	private JwtUtil jwtUtil;
@@ -40,12 +42,19 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 			System.out.println("corresponding username: " + username);
 		}
 		
+		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) System.out.println("jwt matched...now proceeding");
+		
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+			System.out.println("jwtUtil ABOUT to be validated...wait for more regarding:  " + userDetails.getUsername());
 			if (jwtUtil.validateToken(jwt, userDetails)) {
+				System.out.println("jwtUtil validated!");
 				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 				usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+			}
+			else {
+				System.out.println("oops...");
 			}
 		}
 		chain.doFilter(request, response);

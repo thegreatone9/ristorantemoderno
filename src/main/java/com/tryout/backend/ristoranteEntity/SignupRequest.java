@@ -1,15 +1,14 @@
-package com.tryout.backend.security;
+package com.tryout.backend.ristoranteEntity;
 
-public class AuthenticationRequest {
-	
+public class SignupRequest {
 	private String username;
 	private String password;
 	
-	public AuthenticationRequest() {
+	public SignupRequest() {
 		
 	}
 	
-	public AuthenticationRequest(String username, String password) {
+	public SignupRequest(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
@@ -25,5 +24,4 @@ public class AuthenticationRequest {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 }

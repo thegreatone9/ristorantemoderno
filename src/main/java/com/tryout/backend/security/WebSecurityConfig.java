@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,12 +16,14 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.tryout.backend.services.RistoranteUserServiceImpl;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	private MyUserDetailsService myUserDetailsService;
+	private RistoranteUserServiceImpl ristoranteUserServiceImpl;
 	
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
@@ -29,38 +32,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/", "/index.html", "/authenticate", "/users/*", "/dishes/*", "/leaders/*", "/comments/*", "/feedbacks/*", "/promotions/*", "/api/**", "/built/**").permitAll()
+				.antMatchers("/", "/index.html", "/authenticate", "/signup", "/api/dishes/**", "/api/leaders/**", "/api/promotions/**", "/built/**").permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()
 				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS) //don't create a session, since we are using jwt for validation for every request
-				.and()
-				.httpBasic();
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS); //don't create a session, since we are using jwt for validation for every request
 		
-		
-				/*.and()
-			.formLogin()
-				.loginPage("/login.html")
-				.permitAll()
-				.and()
-			.logout()
-				.permitAll();*/
-		
-		//http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		http.csrf().disable();
+		
 	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
-		//add our users for in memory authentication
-		
-		/*UserBuilder users = User.withDefaultPasswordEncoder();
-		auth.inMemoryAuthentication()
-			.withUser(users.username("musa").password("thegreatone9").roles("student")); //it seems roles is mandatory!
-		 */
-		auth.userDetailsService(myUserDetailsService);
+		auth.userDetailsService(ristoranteUserServiceImpl);
 	
 	}
 	
@@ -74,4 +61,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
 	}
+	
 }

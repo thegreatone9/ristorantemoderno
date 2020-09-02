@@ -1,4 +1,4 @@
-package com.tryout.backend.security;
+package com.tryout.backend.ristoranteEntity;
 
 import java.util.Collection;
 import java.util.List;
@@ -69,5 +69,16 @@ public class RistoranteUser implements UserDetails {
 		// TODO Auto-generated method stub
 		return isEnabled;
 	}
+
+	@Override
+	public String toString() {
+		return "RistoranteUser [grantedAuthorities=" + grantedAuthorities + ", password=" + password + ", username="
+				+ username + ", isAccountNonExpired=" + isAccountNonExpired + ", isAccountNonLocked="
+				+ isAccountNonLocked + ", isCredentialsNonExpired=" + isCredentialsNonExpired + ", isEnabled="
+				+ isEnabled + "]";
+	}
+	
+	
+	
 
 }

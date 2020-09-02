@@ -1,4 +1,4 @@
-package com.tryout.backend.security;
+package com.tryout.backend.ristoranteEntity;
 
 public class AuthenticationResponse {
 	

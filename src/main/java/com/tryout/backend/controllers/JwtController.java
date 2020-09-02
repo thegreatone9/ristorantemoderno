@@ -1,6 +1,7 @@
-package com.tryout.backend.security;
+package com.tryout.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -13,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tryout.backend.ristoranteEntity.AuthenticationRequest;
+import com.tryout.backend.ristoranteEntity.AuthenticationResponse;
+import com.tryout.backend.security.JwtUtil;
+
 @RestController
 public class JwtController {
 	
@@ -24,6 +29,7 @@ public class JwtController {
 	private JwtUtil jwtTokenUtil;
 	
 	@Autowired
+	@Qualifier("ristoranteModernoService")
 	private UserDetailsService userDetailsService;
 	
 	
@@ -42,6 +48,8 @@ public class JwtController {
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 		
 		final String jwt = jwtTokenUtil.generateToken(userDetails);
+		
+		System.out.println("Jwt authentication passed. Jwt is: " + jwt);
 		
 		return ResponseEntity.ok(new AuthenticationResponse(jwt));
 	}
