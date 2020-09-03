@@ -31,6 +31,9 @@ public class Comment {
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //these are the cascade effects required		
 	private Dish dish; // Comment (the owner entity) has a join column dishid that stores the id value and has a foreign key to the Dish entity
 	
+	@Column(name="author")
+	private String author;
+	
 	@Column(name="rating")
 	private int rating;
 	
@@ -39,6 +42,9 @@ public class Comment {
 	
 	@Column(name="date")
 	private String date;
+	
+	@Column(name="transferrableDishId")
+	private int transferrableDishId;
 	
 	//constructors
 	
@@ -49,9 +55,35 @@ public class Comment {
 
 	//getters and setters
 	
+	
+	
 	public int getId() {
 		return id;
 	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public int getTransferrableDishId() {
+		return transferrableDishId;
+	}
+
+
+	public void setTransferrableDishId(int transferrableDishId) {
+		this.transferrableDishId = transferrableDishId;
+	}
+
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
 
 	public void setId(int id) {
 		this.id = id;
@@ -94,13 +126,25 @@ public class Comment {
 	public void setDish(Dish dish) {
 		this.dish = dish;
 	}
-
-	//toString
-
-	@Override
-	public String toString() {
-		return "Comment [id=" + id + ", customer=" + customer + ", dish=" + dish + ", rating=" + rating + ", comment="
-				+ comment + ", date=" + date + "]";
+	
+	public String getAuthor() {
+		return author;
 	}
 
+
+	public void setDish(String author) {
+		this.author = author;
+	}
+
+	//toString
+	
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", customer=" + customer + ", dish=" + dish + ", author=" + author + ", rating="
+				+ rating + ", comment=" + comment + ", date=" + date + ", transferrableDishId=" + transferrableDishId
+				+ "]";
+	}
+	
+
+	
 }
