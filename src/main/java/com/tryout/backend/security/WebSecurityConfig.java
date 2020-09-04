@@ -27,11 +27,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private JwtRequestFilter jwtRequestFilter;
 	
 	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/static/**");
-	}
-	
-	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http
