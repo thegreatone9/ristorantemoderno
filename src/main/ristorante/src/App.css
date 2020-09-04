@@ -1,0 +1,70 @@
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 600;
+  color:rgb(54, 49, 49);
+}
+
+.page-enter {
+  opacity: 0.01;
+  transform: translateX(-100%);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 300ms ease-in;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.page-exit-active {
+  opacity: 0.01;
+  transform: translateX(100%);
+  transition: all 300ms ease-out;
+}
+
+.row-header{
+  margin:0px auto;
+  padding:0px auto;
+}
+
+.row-content {
+  margin:0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height:400px;
+}
+
+.footer{
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 1)), url("./images/footer.png") no-repeat center bottom;
+  margin:0px auto;
+  padding: 20px 0px 20px 0px;
+  color:goldenrod;
+}
+.jumbotron {
+  padding:70px 30px 70px 30px;
+  margin:0px auto;
+   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .8)), url("./images/jumbotron.PNG") center;
+  box-shadow: 0 0 200px rgba(0,0,0,0.6) inset;
+  color:floralwhite;
+}
+
+address{
+  font-size:80%;
+  margin:0px;
+  color:floralwhite;
+}
+
+.navbar-dark {
+  background-image: linear-gradient(to bottom right, #717e42, lightseagreen);
+  box-shadow: 0 0 200px rgba(0,0,0,0.6) inset;
+  font-family: 'Neuton',sans-serif;
+  font-weight: 600;
+  /*
+  background-image: linear-gradient(to bottom right, rgb(230, 193, 100), rgb(134, 37, 134));
+  background-image: linear-gradient(to bottom right, green, rgb(165, 132, 42));*/
+}

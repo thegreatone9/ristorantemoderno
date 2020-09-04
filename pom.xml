@@ -134,7 +134,7 @@
 						<phase>generate-resources</phase>
 						<configuration>
 							<nodeVersion>v12.14.1</nodeVersion>
-							<npmVersion>6.13.4</npmVersion>
+							<npmVersion>3.9.0</npmVersion>
 						</configuration>
 					</execution>
 
@@ -148,27 +148,31 @@
 							<arguments>install</arguments>
 						</configuration>
 					</execution>
+
+					<!-- <execution> <id>npm build our react application</id> <goals> <goal>npm</goal> 
+						</goals> <phase>generate-resources</phase> <configuration> <arguments>run 
+						build</arguments> </configuration> </execution> -->
 				</executions>
 				<configuration>
 					<workingDirectory>src/main/ristorante</workingDirectory>
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
 				<executions>
 					<execution>
-						<id>Copy built react app to target folder</id>
-						<phase>proces-resources</phase>
+						<id>position-react-build</id>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
+						<phase>prepare-package</phase>
 						<configuration>
 							<outputDirectory>target/classes/static</outputDirectory>
 							<resources>
 								<resource>
 									<directory>src/main/ristorante/build</directory>
-									<filtering>true</filtering>
+									<filtering>false</filtering>
 								</resource>
 							</resources>
 						</configuration>
