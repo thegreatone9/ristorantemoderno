@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Footer(props){
     return(
-        <div className="footer">
+        <div className="footer" style={{background: "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 1)), url('images/footer.png') no-repeat center"}}> {/*this saved my ass with webpack*/}
             <div className="container">
                 <div className="row justify-content-center">             
                     <div className="col-4 offset-1 col-sm-2">

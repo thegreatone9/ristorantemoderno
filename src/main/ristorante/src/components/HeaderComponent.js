@@ -169,9 +169,9 @@ class Header extends Component {
                             </Nav>
                         </Collapse>
                     </div>
-                </Navbar>  
-                <Jumbotron>
-                    <div className="container">
+                </Navbar>
+                <Jumbotron style={{background: "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url('images/jumbotron.png') center"}}>
+                    <div className="container" >
                         <div className = "row row-header">
                             <div className = "col-12 col-sm-6">
                                 <h1>Ristorante Moderno</h1>
