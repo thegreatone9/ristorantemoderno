@@ -1,5 +1,7 @@
 package com.tryout.backend.ristoranteRepository;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,24 +19,43 @@ import com.tryout.backend.ristoranteEntity.RistoranteUser;
 @Repository("ristoranteModernoDAO")
 public class RistoranteUserDAOImpl{
 	
-	private static String url = "jdbc:postgresql://localhost:5432/ristorante2";
+	/*private static String url = "jdbc:postgresql://localhost:5432/ristorante2";
 	private static String user = "postgres";
-	private static String password = "admin";
+	private static String password = "admin";*/
 
-	
-	public RistoranteUserDAOImpl() {
-		
+	private static URI dbUri;
+	private static String user;
+	private static String password;
+	private static String url;
+
+	public RistoranteUserDAOImpl()  {
+
+	}
+
+	public static void constInitializer() throws URISyntaxException{
+
+		try {
+			dbUri = new URI(System.getenv("DATABASE_URL"));
+			user = dbUri.getUserInfo().split(":")[0];
+			password = dbUri.getUserInfo().split(":")[1];
+			url = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+		}
+		catch(URISyntaxException e){
+			e.printStackTrace();
+		}
 	}
 	
 	public static Connection connectToDB() {
+
 		try {
+			constInitializer();
 			Connection conn = null;
 			System.out.println(url + " " + user + " " + " " + password);
 			conn = DriverManager.getConnection(url, user, password);
 	        System.out.println("Connected to the PostgreSQL server successfully at: " + url);
 	        return conn;
 		}
-		catch(SQLException e) {
+		catch(SQLException | URISyntaxException e) {
 			e.printStackTrace();
 			return null;
 		}	
@@ -54,6 +75,7 @@ public class RistoranteUserDAOImpl{
 	
 	public static boolean checkIfUserExists(String email) {
 		try {
+			constInitializer();
 			System.out.println(email);
 			Connection conn = connectToDB();
 			PreparedStatement st = conn.prepareStatement("SELECT 1 FROM customers WHERE email = ?");
@@ -71,7 +93,7 @@ public class RistoranteUserDAOImpl{
 			}
 		}
 		
-		catch(SQLException e) {
+		catch(SQLException | URISyntaxException e) {
 			System.out.println("Error!");
 			e.printStackTrace();
 		}	
@@ -84,6 +106,7 @@ public class RistoranteUserDAOImpl{
 		List<RistoranteUser> ristoranteUsers = new ArrayList<RistoranteUser>();
 		
         try {
+			constInitializer();
         	Connection conn = connectToDB();
         	ResultSet results = conn.createStatement().executeQuery("select * from customers;");
             while(results.next()) {
@@ -94,7 +117,7 @@ public class RistoranteUserDAOImpl{
             }
            
             
-        } catch (SQLException e) {
+        } catch (SQLException | URISyntaxException e) {
             System.out.println(e.getMessage());
         }
         
@@ -106,6 +129,7 @@ public class RistoranteUserDAOImpl{
 	
 	public static boolean createNewUser(String email, String password, String firstname, String lastname) {
 		try {
+			constInitializer();
 			Connection conn = connectToDB();
 			PreparedStatement statement = conn.prepareStatement("INSERT INTO customers (email, password, first_name, last_name) VALUES (?, ?, ?, ?)");
 			statement.setString(1, email);
@@ -116,7 +140,7 @@ public class RistoranteUserDAOImpl{
 			System.out.println("Connected to DB -> Created account -> Now returning.");
 			return true;
 		}
-		catch(SQLException e){
+		catch(SQLException | URISyntaxException e){
 			e.printStackTrace();
 			return false;
 		}	
