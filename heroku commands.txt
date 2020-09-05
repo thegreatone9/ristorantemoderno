@@ -1,0 +1,34 @@
+//heroku commands from cli. Commands below are reminders for someone who has already setup some stuff, but forgot stuff
+//use this video: https://www.youtube.com/watch?v=KDK5xXPJVIg&ab_channel=SpringAcademy
+//creating new heroku app and remote git repository (to push which, you need to have git initialized locally for your project ofc)
+heroku create
+
+//logging in to existing
+heroku login
+
+//confirming remote
+git remote -v
+
+//set remote for local app
+heroku git:remote -a <app-name>
+
+//renaming
+heroku apps:rename newname --app oldname
+
+//pushing to remote heroku (if its a java or spring app, heroku will auto detect and run maven build, etc.). Things setup pretty easily.
+git push heroku master
+
+//type the below to find your DATABSE_URL and dbname, then connect using dbname and \c
+heroku config -a ristorantemoderno
+
+//after setting up postgres, to establish a psql session with your remote database
+heroku pg:psql
+
+//**push data from local database into remote Heroku Postgres database
+heroku pg:push mylocaldb DATABASE_URL --app ristorantemoderno
+
+//after pushing app, use below to open it:
+heroku open
+
+//to see logs:
+heroku logs
