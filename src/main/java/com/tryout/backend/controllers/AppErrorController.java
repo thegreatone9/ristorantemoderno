@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 class AppErrorController implements ErrorController {
 	
-	@RequestMapping("/static/error")
+	@RequestMapping("/error")
     public String handleError(HttpServletRequest request) {
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 	    
@@ -20,19 +20,19 @@ class AppErrorController implements ErrorController {
 	        
 	        if(statusCode == HttpStatus.FORBIDDEN.value()) {
 	        	System.out.println("403 ERRRRROORRRRRRRR!!!!!");
-	        	return "static/error/error-403.html";
+	        	return "error/error-403.html";
 	        }
 	        
 	        else if(statusCode == HttpStatus.NOT_FOUND.value()) {
 	        	System.out.println("404 ERRRRROORRRRRRRR!!!!!");
-	            return "static/error/error-404.html";
+	            return "error/error-404.html";
 	        }
 	        else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
 	        	System.out.println("500 ERRRRROORRRRRRRR!!!!!");
-	            return "static/error/error-500.html";
+	            return "error/error-500.html";
 	        }
 	    }
-	    return "static/error/error";
+	    return "error/error";
 
     }
 	

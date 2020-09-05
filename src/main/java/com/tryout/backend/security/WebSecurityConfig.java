@@ -25,10 +25,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
-	
+
+
+	//in the end, the mime type error thing can be most prolly solved by using the ant matchers thing and the built folder structure for js files
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("./built/**");
+		//web.ignoring().antMatchers("./built/**");
 		//web.ignoring().antMatchers("./images/**");
 	}
 	
@@ -37,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http
 			.authorizeRequests()
-				.antMatchers("/", "/index.html", "/authenticate", "/signup", "/api/dishes/**", "/api/comments", "/api/leaders/**", "/api/promotions/**", "/api/feedbacks", "/static/error/**", "/built/**", "/images/**").permitAll()
+				.antMatchers("/", "/home", "/menu", "/contactus", "/aboutus", "/subscriptions", "/index.html", "/authenticate", "/signup", "/api/dishes/**", "/api/comments", "/api/leaders/**", "/api/promotions/**", "/api/feedbacks", "/error/**", "/built/**", "/images/**").permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()

@@ -77,7 +77,8 @@ public class RedirectToIndexFilter implements Filter {
             return;
         }
 
-        // all requests not api or static will be forwarded to index page. 
+        // all requests not api or static will be forwarded to index page.
+        System.out.println("Its a different request so go to index.html");
         request.getRequestDispatcher("/index.html").forward(request, response);
     }
 
