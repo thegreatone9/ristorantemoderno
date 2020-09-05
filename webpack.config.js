@@ -16,6 +16,7 @@ module.exports = {
         rules: [ //rules is an array of js objects
             {
                 test: /\.(js|jsx)$/, //tests the file extension and applies appropriate loader
+                exclude: /(node_modules)/,
                 use: [{
                     loader: 'babel-loader',
                     options: {
@@ -71,7 +72,9 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|PNG|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
                 use: [{
-                        loader: 'file-loader'
+                        loader: 'file-loader',
+                        options: 'built/images'
+
                     },
                     {
                         loader: 'url-loader?limit=100000'

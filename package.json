@@ -30,7 +30,7 @@
     "style-loader": "^1.2.1"
   },
   "scripts": {
-    "watch": "webpack --watch -d --output ./target/classes/static/bundle.js",
+    "watch": "webpack --watch -d --output ./target/classes/static/built/bundle.js",
     "build": "webpack -p"
   },
   "eslintConfig": {

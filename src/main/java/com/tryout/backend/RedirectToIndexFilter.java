@@ -71,8 +71,8 @@ public class RedirectToIndexFilter implements Filter {
             return;
         }
         
-        if (requestURI.startsWith("/assets/")) {
-        	System.out.println("got em at assets");
+        if (requestURI.startsWith("/images/")) {
+        	System.out.println("got em at images");
             chain.doFilter(request, response);
             return;
         }
