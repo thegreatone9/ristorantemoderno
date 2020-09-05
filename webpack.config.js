@@ -73,11 +73,16 @@ module.exports = {
                 test: /\.(jpe?g|png|PNG|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
                 use: [{
                         loader: 'file-loader',
-                        options: 'built/images'
+                                options: {
+                                  outputPath: 'images',
+                                }
 
                     },
                     {
-                        loader: 'url-loader?limit=100000'
+                        loader: 'url-loader?limit=100000',
+                                options: {
+                                  outputPath: 'images',
+                                }
                     }
                 ]
             }

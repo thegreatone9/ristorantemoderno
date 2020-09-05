@@ -20,6 +20,8 @@ class AppErrorController implements ErrorController {
 	        
 	        if(statusCode == HttpStatus.FORBIDDEN.value()) {
 	        	System.out.println("403 ERRRRROORRRRRRRR!!!!!");
+				System.out.println(request.getRequestURL());
+				System.out.println(request.getRequestURI());
 	        	return "error/error-403.html";
 	        }
 	        

@@ -66,7 +66,7 @@ class Header extends Component {
                         {/*this reactstrap toggler button will be shown only for xs to sm screens. It controls collapse of navbar items*/}
                         <NavbarToggler onClick={this.toggleNav} />
                         <NavbarBrand className="mr-auto" href="/">
-                            <img src='assets/images/logo.png' height="40" width="50" alt='Ristorante Moderno'/>
+                            <img src='images/logo.png' height="40" width="50" alt='Ristorante Moderno'/>
                         </NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>

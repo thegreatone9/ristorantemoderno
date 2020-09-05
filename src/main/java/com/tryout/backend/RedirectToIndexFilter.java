@@ -47,6 +47,7 @@ public class RedirectToIndexFilter implements Filter {
         System.out.println(req);
         System.out.println(requestURI);
 
+        //important! make sure 'starts with' is correct here, or you will get mime type error
         if (requestURI.startsWith("/api")) {
         	System.out.println("got em at api");
             chain.doFilter(request, response);
