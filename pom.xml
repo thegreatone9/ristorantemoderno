@@ -149,7 +149,7 @@
 						</configuration>
 					</execution>
 
-					<execution>
+					<!-- <execution>
 						<id>webpack build</id>
 						<goals>
 							<goal>webpack</goal>
@@ -160,17 +160,17 @@
 						<configuration>
 							<arguments>-p</arguments>
 						</configuration>
-					</execution>
+					</execution> -->
 
 					 <execution> <id>npm build our react application</id> <goals> <goal>npm</goal>
 						</goals> <phase>generate-resources</phase> <configuration> <arguments>run-script
 						build</arguments> </configuration> </execution>
 				</executions>
-				<configuration>
+				<!-- <configuration>
 					<workingDirectory>src/main/ristorante</workingDirectory>
-				</configuration>
+				</configuration> -->
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.0.2</version>
 				<executions>
@@ -196,7 +196,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 

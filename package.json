@@ -30,10 +30,8 @@
     "style-loader": "^1.2.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --open --hot --mode development",
-    "build": "webpack --mode production",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "watch": "webpack --watch -d --output ./target/classes/static/built/bundle.js",
+    "build": "webpack -p"
   },
   "eslintConfig": {
     "extends": "react-app"

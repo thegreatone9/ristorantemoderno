@@ -3,11 +3,11 @@ const autoprefixer = require('autoprefixer');
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/main/ristorante/src/index.js',
     output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'build'), //(first arg refers to current path). Need path resolve to convert to absolute path.
-        publicPath: '/' //need to specify to webpack dev-server to not ignore the path
+            path: path.resolve(__dirname, './src/main/resources/static/built'),
+            filename: 'bundle.js',
+    		publicPath: '/'
     },
     resolve: {
         extensions: ['.js', '.jsx']
@@ -82,7 +82,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html",
+            template: "./src/main/ristorante/index.html",
             filename: "./index.html"
         }) //generate index.html file in dist folder for you and inject link and script tags into its body
     ]
