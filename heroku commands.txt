@@ -32,3 +32,6 @@ heroku open
 
 //to see logs:
 heroku logs
+
+//or
+heroku logs --tail
