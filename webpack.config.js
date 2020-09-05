@@ -61,13 +61,13 @@ module.exports = {
 
 
                 ]
-            },*/
+            },
             {
                 test: /\.html$/,
                 use: [{
                     loader: "html-loader"
                 }]
-            },
+            },*/
             {
                 test: /\.(jpe?g|png|PNG|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
                 use: [{
@@ -81,9 +81,9 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
+        /*new HtmlWebpackPlugin({
             template: "./src/main/resources/static/index.html",
             filename: "./index.html"
-        }) //generate index.html file in dist folder for you and inject link and script tags into its body
+        }) *///generate index.html file in dist folder for you and inject link and script tags into its body
     ]
 };

@@ -53,6 +53,18 @@ public class RedirectToIndexFilter implements Filter {
             return;
         }
 
+        if (requestURI.startsWith("/signup")) {
+            System.out.println("got em at signup");
+            chain.doFilter(request, response);
+            return;
+        }
+
+        if (requestURI.startsWith("/authenticate")) {
+            System.out.println("got em at signup");
+            chain.doFilter(request, response);
+            return;
+        }
+
         if (requestURI.startsWith("/built/")) {
         	System.out.println("got em at built");
             chain.doFilter(request, response);
