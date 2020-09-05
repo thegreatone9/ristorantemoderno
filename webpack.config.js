@@ -82,7 +82,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/main/ristorante/index.html",
+            template: "./src/main/resources/static/index.html",
             filename: "./index.html"
         }) //generate index.html file in dist folder for you and inject link and script tags into its body
     ]
