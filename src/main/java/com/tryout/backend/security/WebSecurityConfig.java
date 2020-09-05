@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("./built/**");
-		web.ignoring().antMatchers("./images/**");
+		//web.ignoring().antMatchers("./images/**");
 	}
 	
 	@Override
@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http
 			.authorizeRequests()
-				.antMatchers("/", "/index.html", "/authenticate", "/signup", "/api/dishes/**", "/api/comments", "/api/leaders/**", "/api/promotions/**", "/api/feedbacks", "/error/**", "/built/**").permitAll()
+				.antMatchers("/", "/index.html", "/authenticate", "/signup", "/api/dishes/**", "/api/comments", "/api/leaders/**", "/api/promotions/**", "/api/feedbacks", "/static/error/**", "/built/**", "/images/**").permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()
