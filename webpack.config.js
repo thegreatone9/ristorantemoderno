@@ -79,14 +79,14 @@ module.exports = {
                 use: [{
                         loader: 'file-loader',
                                 options: {
-                                  outputPath: 'images',
+                                  outputPath: '../images',
                                 }
 
                     },
                     {
                         loader: 'url-loader?limit=100000',
                                 options: {
-                                  outputPath: 'images',
+                                  outputPath: '../images',
                                 }
                     }
                 ]
