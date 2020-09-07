@@ -71,19 +71,30 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/home"><span className="fa fa-home fa-lg"></span> Home</NavLink>
+                                    <NavLink className="nav-link" to="/home"> Home</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/aboutus"><span className="fa fa-info fa-lg"></span> About Us</NavLink>
+                                    <NavLink className="nav-link" to="/aboutus"> About Us</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/menu"><span className="fa fa-list fa-lg"></span> Menu</NavLink>
+                                    <NavLink className="nav-link" to="/menu"> Menu</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/contactus"><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
+                                    <NavLink className="nav-link" to="/contactus"> Contact Us</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/subscriptions"><span className="fa fa-address-card fa-lg"></span> Your Subscriptions</NavLink>
+                                {
+                                    this.props.isAuthenticated ?
+
+                                    (
+                                        <NavLink className="nav-link" to="/subscriptions"> <span style={{color:"yellow"}}>Your Subscriptions</span></NavLink>
+                                    )
+                                    :
+                                    (
+                                        <NavLink className="nav-link" to="/subscriptions"> Your Subscriptions</NavLink>
+                                    )
+                                }
+
                                 </NavItem>
                             </Nav>
                             <Nav className="ml-auto" navbar>
@@ -94,7 +105,7 @@ class Header extends Component {
                                      (
                                          <div className="">
                                             <NavItem style={{color:"yellow", padding:"5px", display:"inline-block"}}>Welcome!</NavItem> 
-                                            <NavItem style={{display:"inline-block"}}><Button  onClick={this.handleLogout}  className="fa fa-sign-out fa-sm" style={{height:"33px", display:"inline-block"}}>Logout</Button></NavItem>
+                                            <NavItem style={{display:"inline-block"}}><Button  onClick={this.handleLogout}  style={{height:"33px", display:"inline-block"}}>Logout</Button></NavItem>
                                          </div>
                                      )
                                      
@@ -103,8 +114,8 @@ class Header extends Component {
                                      (
                                         <div>
                                             <NavItem>
-                                                <Button onClick={this.toggleLoginModal} color="success" style={{margin:"5px"}}><span className="fa fa-sign-in fa-lg"> <b style={{fontFamily:'Neuton'}}>Login</b></span></Button>
-                                                <Button onClick={this.toggleSignupModal} color="danger" style={{margin:"5px"}}><span className="fa fa-sign-in fa-lg"> <b style={{fontFamily:'Neuton'}}>New? SignUp</b></span></Button>
+                                                <Button onClick={this.toggleLoginModal} color="success" style={{margin:"5px"}}><span > <b>Login</b></span></Button>
+                                                <Button onClick={this.toggleSignupModal} color="danger" style={{margin:"5px"}}><span > <b>New? SignUp</b></span></Button>
                                             </NavItem>
                                         </div>
                                      )

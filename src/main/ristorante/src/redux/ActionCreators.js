@@ -312,7 +312,7 @@ export const signup = (username, password, firstname, lastname) => (dispatch) =>
         .then(response => console.log(response.text()))
         .then(() => {
             dispatch(authenticate(username, password));
-            //alert("Your account was created and you have been logged in! :)");
+            alert("Your account was created and you have been logged in! :)");
         })
         .catch(error => {     
             dispatch(signupFailed(error.message));
@@ -369,8 +369,8 @@ export const authenticate = (username, password) => (dispatch) => {
             console.log(response.jwt);
             console.log(response.customerid);
             //dispatch(authenticationSuccess(response.jwt));
-            //alert("You have been logged in! :)");
             dispatch(fetchSubscriptions(response.jwt, response.customerid));
+            alert("You have been logged in! :)");
             //console.log("First fetch done, now second: ");
             //console.log(this.state.jwt);
         })

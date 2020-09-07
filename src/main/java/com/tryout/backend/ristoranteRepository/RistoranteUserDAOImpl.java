@@ -18,7 +18,7 @@ import com.tryout.backend.ristoranteEntity.RistoranteUser;
 
 @Repository("ristoranteModernoDAO")
 public class RistoranteUserDAOImpl{
-	
+
 	/*private static String url = "jdbc:postgresql://localhost:5432/ristorante2";
 	private static String user = "postgres";
 	private static String password = "admin";*/
@@ -44,7 +44,7 @@ public class RistoranteUserDAOImpl{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static Connection connectToDB() {
 
 		try {
@@ -52,27 +52,27 @@ public class RistoranteUserDAOImpl{
 			Connection conn = null;
 			System.out.println(url + " " + user + " " + " " + password);
 			conn = DriverManager.getConnection(url, user, password);
-	        System.out.println("Connected to the PostgreSQL server successfully at: " + url);
-	        return conn;
+			System.out.println("Connected to the PostgreSQL server successfully at: " + url);
+			return conn;
 		}
 		catch(SQLException | URISyntaxException e) {
 			e.printStackTrace();
 			return null;
-		}	
+		}
 	}
 
-	
+
 	public static Optional<RistoranteUser> selectRistoranteUserByUsername(String email) {
 		Optional<RistoranteUser> user = getRistoranteUsers()
 				.stream()
 				.filter(ristoranteUser -> email.equals(ristoranteUser.getUsername()))
 				.findFirst();
-		
+
 		System.out.println(user.toString());
 		return user;
-		
+
 	}
-	
+
 	public static boolean checkIfUserExists(String email) {
 		try {
 			constInitializer();
@@ -82,51 +82,51 @@ public class RistoranteUserDAOImpl{
 			st.setString(1, email);
 			ResultSet results = st.executeQuery();
 			System.out.println("Resultset created successfully in checking for existing accounts.");
-			
+
 			if (!results.next()) {
 				System.out.println("Database check successful. No existing account with that email exists.");
 				return false;
 			}
-			
+
 			else {
 				while(results.next()) System.out.println("Database found: " + results.getString(1));
 			}
 		}
-		
+
 		catch(SQLException | URISyntaxException e) {
 			System.out.println("Error!");
 			e.printStackTrace();
-		}	
-		
+		}
+
 		System.out.println("Signup error: Account with name already exists!");
 		return true;
 	}
-	
+
 	private static List<RistoranteUser> getRistoranteUsers() {
 		List<RistoranteUser> ristoranteUsers = new ArrayList<RistoranteUser>();
-		
-        try {
+
+		try {
 			constInitializer();
-        	Connection conn = connectToDB();
-        	ResultSet results = conn.createStatement().executeQuery("select * from customers;");
-            while(results.next()) {
-            	String email = results.getString("email");
-                String  password = results.getString("password");
-                int customerid = results.getInt("id");
-                ristoranteUsers.add(new RistoranteUser(customerid, null, password, email, true, true, true, true));
-            }
-           
-            
-        } catch (SQLException | URISyntaxException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        System.out.println(ristoranteUsers);
-        
+			Connection conn = connectToDB();
+			ResultSet results = conn.createStatement().executeQuery("select * from customers;");
+			while(results.next()) {
+				String email = results.getString("email");
+				String  password = results.getString("password");
+				int customerid = results.getInt("id");
+				ristoranteUsers.add(new RistoranteUser(customerid, null, password, email, true, true, true, true));
+			}
+
+
+		} catch (SQLException | URISyntaxException e) {
+			System.out.println(e.getMessage());
+		}
+
+		System.out.println(ristoranteUsers);
+
 		return ristoranteUsers;
 	}
-	
-	
+
+
 	public static boolean createNewUser(String email, String password, String firstname, String lastname) {
 		try {
 			constInitializer();
@@ -143,7 +143,7 @@ public class RistoranteUserDAOImpl{
 		catch(SQLException | URISyntaxException e){
 			e.printStackTrace();
 			return false;
-		}	
+		}
 	}
 
 }

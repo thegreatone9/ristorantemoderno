@@ -29,12 +29,12 @@ function Footer(props){
                     </div>
                     <div className="col-12 col-sm-4 align-self-center">
                         <div className="text-center">
-                            <a className="btn btn-social-icon btn-google" href="http://google.com/+"><i className="fa fa-google-plus"></i></a>
-                            <a className="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i className="fa fa-facebook"></i></a>
-                            <a className="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i className="fa fa-linkedin"></i></a>
-                            <a className="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i className="fa fa-twitter"></i></a>
-                            <a className="btn btn-social-icon btn-google" href="http://youtube.com/"><i className="fa fa-youtube"></i></a>
-                            <a className="btn btn-social-icon" href="mailto:"><i className="fa fa-envelope-o"></i></a>
+                            <a className="btn btn-social-icon btn-google text-center" href="http://google.com/+"> G+</a>
+                            <a className="btn btn-social-icon btn-facebook text-center" href="http://www.facebook.com/profile.php?id="> Fb</a>
+                            <a className="btn btn-social-icon btn-linkedin text-center" href="http://www.linkedin.com/in/20cvigilante"> Ln</a>
+                            <a className="btn btn-social-icon btn-twitter text-center" href="http://twitter.com/20Cvigilante"> Tw</a>
+                            <a className="btn btn-social-icon btn-google text-center" href="http://youtube.com/"> YT</a>
+                            <a className="btn btn-social-icon" href="mailto:musashakib123@gmail.com"> M</a>
                         </div>
                     </div>
                 </div>
