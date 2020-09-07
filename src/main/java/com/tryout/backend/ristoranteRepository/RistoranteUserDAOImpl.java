@@ -81,7 +81,7 @@ public class RistoranteUserDAOImpl{
 			PreparedStatement st = conn.prepareStatement("SELECT 1 FROM customers WHERE email = ?");
 			st.setString(1, email);
 			ResultSet results = st.executeQuery();
-			System.out.println("Resultset created successfully in checking for existing accounts.");
+			System.out.println("Resultset created successfully while checking for existing accounts.");
 
 			if (!results.next()) {
 				System.out.println("Database check successful. No existing account with that email exists.");
