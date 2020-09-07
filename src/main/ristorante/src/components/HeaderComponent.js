@@ -56,6 +56,7 @@ class Header extends Component {
     handleLogout(event) {
         event.preventDefault();
         this.props.logout();
+        alert("You have been logged out.");
     }
 
     render(){
@@ -132,12 +133,6 @@ class Header extends Component {
                                             <FormGroup>
                                                 <Label htmlFor="password">Password</Label>
                                                 <Input type="password" id="password" name="password" innerRef = {(input) => this.password = input}></Input>
-                                            </FormGroup>
-                                            <FormGroup check>
-                                                <Label check>
-                                                    <Input type="checkbox" name="remember" innerRef = {(input) => this.remember = input}></Input>
-                                                    <p>Remember me</p>
-                                                </Label>
                                             </FormGroup>
                                             <Button type="submit" value="submit" className="primary">Login</Button>
                                             

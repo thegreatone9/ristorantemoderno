@@ -311,11 +311,12 @@ export const signup = (username, password, firstname, lastname) => (dispatch) =>
         )
         .then(response => console.log(response.text()))
         .then(() => {
+            alert("Your account was created. Welcome to Ristorante Moderno!");
             dispatch(authenticate(username, password));
-            alert("Your account was created and you have been logged in! :)");
         })
         .catch(error => {     
             dispatch(signupFailed(error.message));
+            alert("Signing up failed!");
         })
 }
 
@@ -377,6 +378,7 @@ export const authenticate = (username, password) => (dispatch) => {
         .catch(error => { 
             //console.log(error); 
             dispatch(authenticationFailed(error.message));
+            alert("Credentials do not exist or match with database records!");
         })
 }
 

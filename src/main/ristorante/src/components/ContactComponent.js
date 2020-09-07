@@ -45,12 +45,12 @@ class Contact extends Component {
                             <h5>Our Address</h5>
                             <address>
                             <div style={{color:'black'}}>
-                            12/A, Eskaton Garden Road<br />
+                            Eskaton Garden Road<br />
 		                    Dhaka, Greater<br />
 		                    Bangladesh<br />
-                            <i className="fa fa-phone"></i>: +852 1234 5678<br />
-                            <i className="fa fa-fax"></i>: +852 8765 4321<br />
-                            <i className="fa fa-envelope"></i>: <a href="mailto:moderno@food.net">moderno@food.net</a>
+                            <i className="fa fa-phone"></i>: +88 017 964 1466<br />
+                            <i className="fa fa-fax"></i>: +88 017 964 1466<br />
+                            <i className="fa fa-envelope"></i>: <a href="mailto:musashakib123@gmail.com"> musashakib123@gmail.com"</a>
                             </div>
                             </address>
                     </div>
@@ -59,9 +59,9 @@ class Contact extends Component {
                     </div>
                     <div className="col-12 col-sm-11 offset-sm-1">
                         <div className="btn-group" role="group">
-                            <a role="button" className="btn btn-primary" href="tel:+85212345678"><i className="fa fa-phone"></i> Call</a>
-                            <a role="button" className="btn btn-info"><i className="fa fa-skype"></i> Skype</a>
-                            <a role="button" className="btn btn-success" href="mailto:moderno@food.net"><i className="fa fa-envelope-o"></i> Email</a>
+                            <a role="button" className="btn btn-primary" href="tel:+880179641466"> Call</a>
+                            <a role="button" className="btn btn-info"> Skype</a>
+                            <a role="button" className="btn btn-success" href="mailto:musashakib123@gmail.com"> Email</a>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ class Contact extends Component {
                                 </Label>
                                 <Col md={10}>
                                     <Control.text model=".firstname" id="firstname" name="firstname" placeholder="First Name" className="form-control" validators = {{required, minLength:minLength(3), maxLength:maxLength(15)}}></Control.text>
-                                    <Errors className="text-danger" model=".firstname" show="touched" messages={{required: 'Required', minLength:'Must be greater than 2 chars', maxLength:'Must be less than 15 chars'}}/> 
+                                    <Errors className="text-danger" model=".firstname" show="touched" messages={{required: 'Required', minLength:' Must be greater than 2 chars', maxLength:' Must be less than 15 chars'}}/>
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -86,7 +86,7 @@ class Contact extends Component {
                                 </Label>
                                 <Col md={10}>
                                     <Control.text model=".lastname" id="lastname" name="lastname" placeholder="Last Name" className="form-control" validators = {{required, minLength:minLength(3), maxLength:maxLength(15)}}></Control.text>
-                                    <Errors className="text-danger" model=".firstname" show="touched" messages={{required: 'Required', minLength:'Must be greater than 2 chars', maxLength:'Must be less than 15 chars'}}/>
+                                    <Errors className="text-danger" model=".firstname" show="touched" messages={{required: 'Required', minLength:' Must be greater than 2 chars', maxLength:' Must be less than 15 chars'}}/>
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -95,7 +95,7 @@ class Contact extends Component {
                                 </Label>
                                 <Col md={10}>
                                     <Control.text model=".telnum" id="telnum" name="telnum" placeholder="Telephone" className="form-control" validators = {{required, minLength:minLength(3), maxLength:maxLength(15), isNumber}}></Control.text>
-                                    <Errors className="text-danger" model=".telnum" show="touched" messages={{required:'Required', minLength:'Must be greater than 2 chars', maxLength:'Must be less than 15 chars', isNumber:'Must be a number'}} />
+                                    <Errors className="text-danger" model=".telnum" show="touched" messages={{required:'Required', minLength:' Must be greater than 2 chars', maxLength:' Must be less than 15 chars', isNumber:' Must be a number'}} />
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -104,7 +104,7 @@ class Contact extends Component {
                                 </Label>
                                 <Col md={10}>
                                     <Control.text model=".email" id="email" name="email" placeholder="Email" className="form-control" validators = {{required, validEmail }}></Control.text>
-                                    <Errors className="text-danger" model=".email" show="touched" messages={{required:'Required', validEmail:'Must be a valid email'}}/>
+                                    <Errors className="text-danger" model=".email" show="touched" messages={{required:'Required', validEmail:' Must be a valid email'}}/>
                                 </Col>
                             </Row>
                             <Row className="form-group">
