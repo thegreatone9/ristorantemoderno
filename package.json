@@ -30,6 +30,7 @@
     "style-loader": "^1.2.1"
   },
   "scripts": {
+    "start": "webpack-dev-server --open --hot --mode development",
     "watch": "webpack --watch -d --output ./target/classes/static/built/bundle.js",
     "build": "webpack -p"
   },
