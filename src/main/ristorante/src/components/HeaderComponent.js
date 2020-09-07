@@ -47,17 +47,19 @@ class Header extends Component {
         event.preventDefault();
     }
 
-    handleSignup(event){
-        this.toggleSignupModal();
-        console.log("First Name: " + this.firstname.value + " Last Name: " + this.lastname.value + "Username: " + this.username.value + " Password: " + this.password.value);
-        this.props.signup(this.username.value, this.password.value, this.firstname.value, this.lastname.value);
+    handleSignup(event, values){
+        if ((values.firstname.length > 0) && (values.lastname.length > 0) && (values.username.length > 0) && (values.password.length > 0)) {
+            console.log("First Name: " + values.firstname + " Last Name: " + values.lastname + " Username: " + values.username + " Password: " + values.password);
+            this.props.signup(values.username, values.password, values.firstname, values.lastname);
+            this.toggleSignupModal();
+        }
         event.preventDefault();
     }
 
     handleLogout(event) {
         event.preventDefault();
         this.props.logout();
-        alert("You have been logged out.");
+        setTimeout(alert("You have been logged out."), 2500);
     }
 
     render(){
@@ -145,10 +147,15 @@ class Header extends Component {
                                     <ModalHeader toggle={this.toggleSignupModal}>Sign Up</ModalHeader>
                                     <ModalBody>
 
-                                        <Form onSubmit={this.handleSignup}>
+                                        <AvForm onValidSubmit={this.handleSignup}>
+
+                                            <AvField name="firstname" label="First Name" type="text" required />
+                                            <AvField name="lastname" label="Last Name" type="text" required />
+                                            <AvField name="username" label="Username" type="text" required />
+                                            <AvField name="password" label="Password" type="password" required />
 
                                             
-                                            <FormGroup>
+                                            {/*<FormGroup>
                                                 <Label htmlFor="firstname">First Name</Label>
                                                 <Input type="text" id="firstname" name="firstname" innerRef = {(input) => this.firstname = input}></Input>
                                             </FormGroup>
@@ -166,11 +173,11 @@ class Header extends Component {
                                             <FormGroup>
                                                 <Label htmlFor="password">Password</Label>
                                                 <Input type="password" id="password" name="password" innerRef = {(input) => this.password = input}></Input>
-                                            </FormGroup>
+                                            </FormGroup>*/}
 
                                             <Button type="submit" value="submit" className="primary">SignUp</Button>
                                             
-                                        </Form>
+                                        </AvForm>
                                     </ModalBody>
                                 </Modal>
                             </Nav>

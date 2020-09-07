@@ -18,8 +18,11 @@ public class SignupController {
 		String requestedPassword = signupInfo.getPassword();
 		String requestedFirstName = signupInfo.getFirstname();
 		String requestedLastName = signupInfo.getLastname();
-		
+
 		System.out.println("Requested user name is: " + requestedUsername);
+		System.out.println("Requested password is: " + requestedPassword);
+		System.out.println("Requested first name is: " + requestedFirstName);
+		System.out.println("Requested last name is: " + requestedLastName);
 		
 		//if the called function below returns false, we know there is no existing account with that name, so proceed to create a new account
 		if (!RistoranteUserDAOImpl.checkIfUserExists(requestedUsername)) {

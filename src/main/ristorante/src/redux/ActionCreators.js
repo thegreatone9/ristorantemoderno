@@ -44,12 +44,12 @@ export const postFeedback = (firstname, lastname, telnum, email, agree, contactT
         .then(response => response.json())
         .then(response => {
             console.log(JSON.stringify(response));
-            alert(JSON.stringify(response));
+            setTimeout(alert('We appreciate your feedback: ' + firstname + ' says ' + message + '.'), 2000);
             //dispatch(response); //fix this
         })
         .catch(error => {
             console.log('post feedback', error.message);
-            alert('Your feedback could not be posted\nError: ' + error.message);
+            setTimeout(alert('Your feedback could not be posted\nError: ' + error.message), 2000);
         });
 };
 
@@ -114,7 +114,7 @@ export const postComment = (customerid, jwt, dishId, rating, author, comment) =>
                 dispatch(updateDatabaseTables(jwt, commentid, customerid, dataFetch2, dataFetch3));
             })   //post method includes an id during posting and returns it as response, which will be then dispatched into store via the addComment action
             .catch(error => { console.log('post comments', error.message);  
-                              alert('Your comment could not be posted\nError: ' + error.message); });
+                              setTimeout(alert('Your comment could not be posted\nError: ' + error.message), 2000); });
         };
 
           
@@ -309,14 +309,22 @@ export const signup = (username, password, firstname, lastname) => (dispatch) =>
             throw errmess;
         }
         )
-        .then(response => console.log(response.text()))
-        .then(() => {
-            alert("Your account was created. Welcome to Ristorante Moderno!");
-            dispatch(authenticate(username, password));
+        .then(response => response.text())
+        .then((responseText) => {
+            if (responseText.substring(7,8) !== 'A') {
+                console.log(responseText);
+                console.log(responseText.substring(7,8));
+                setTimeout(alert("Your account was created. Welcome to Ristorante Moderno!"), 2500);
+                dispatch(authenticate(username, password));
+            }
+            else {
+                console.log(responseText);
+                setTimeout(alert("Those credentials already exist on server."), 4000);
+            }
         })
         .catch(error => {     
             dispatch(signupFailed(error.message));
-            alert("Signing up failed!");
+            setTimeout(alert("Signing up failed!"), 2000);
         })
 }
 
@@ -371,14 +379,14 @@ export const authenticate = (username, password) => (dispatch) => {
             console.log(response.customerid);
             //dispatch(authenticationSuccess(response.jwt));
             dispatch(fetchSubscriptions(response.jwt, response.customerid));
-            alert("You have been logged in! :)");
+            setTimeout(alert("You have been logged in! :)"), 2000);
             //console.log("First fetch done, now second: ");
             //console.log(this.state.jwt);
         })
         .catch(error => { 
             //console.log(error); 
             dispatch(authenticationFailed(error.message));
-            alert("Credentials do not exist or match with database records!");
+            setTimeout(alert("Credentials do not exist or match with database records!"), 2000);
         })
 }
 
@@ -481,7 +489,7 @@ export const subscribe = (jwt, customerid, dishid)  => (dispatch) => {
     )
     .then(() => {
         console.log("New dish subscribed!");
-        alert("New dish subscribed!");
+        setTimeout(alert("New dish subscribed!"), 2000);
         dispatch(fetchSubscriptions(jwt, customerid));
     })
     .catch(error => { 
@@ -515,7 +523,7 @@ export const unsubscribe = (jwt, customerid, dishid)  => (dispatch) => {
     )
     .then(() => {
         console.log("Dish unsubscribed!");
-        alert("The selected dish was unsubscribed!");
+        setTimeout(alert("The selected dish was unsubscribed!"), 2000);
         dispatch(fetchSubscriptions(jwt, customerid));
     })
     .catch(error => { 
