@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.tryout.backend.BackendApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.038 s - in com.tryout.backend.BackendApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.693 s - in com.tryout.backend.BackendApplicationTests
