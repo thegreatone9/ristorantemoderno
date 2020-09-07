@@ -15,9 +15,4 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 		System.out.println("All systems go!");
 	}
-
-
-	public static void doNothing(){
-
-	}
 }
