@@ -1,4 +1,3 @@
-'''
 Built a complete web-app for a restaurant from scratch,
 depicting its subscription based services in a post COVID-19
 world, with authentication for customers.
@@ -14,5 +13,3 @@ database ORM respectively, and setup JPA CRUD.
 
 Relational database designed on PostgreSQL and deployed
 on Heroku.
-
-'''
